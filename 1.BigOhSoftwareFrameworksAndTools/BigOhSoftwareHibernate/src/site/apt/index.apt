@@ -1,0 +1,31 @@
+ -----
+ Introduction
+ -----
+ Dave W.
+ -----
+ 2010-06-12
+ -----
+
+Overview
+
+	Big-Oh Software's Hibernate Extension library provides base and utility classes for building domain and persistence tiers 
+	backed by the Hibernate ORM framework.
+
+Usage
+	
+	In the Hibernate Extension library you'll find abstract base classes that simplify the construction of high-quality 
+	domain and persistence tiers.
+	
+~~ TODO Provide example ... this module need's some rework w.r.t. use of generic types in base class.	
++-----+	
+(Check back later for an example.)
++-----+	
+
+	The library also provides utility classes for extracting meta-data from Hibernate.  For example ...
+	
++-----+	
+Statistics hibernateStats = HibernateUtil.getSessionFactory().getStatistics();
+double cacheHitRatio = HibernateStatisticsUtil.getSecondLevelCacheHitRatio(hibernateStats)
++-----+	
+
+~~See also http://maven.apache.org/doxia/references/apt-format.html for a tutorial on the APT document format.

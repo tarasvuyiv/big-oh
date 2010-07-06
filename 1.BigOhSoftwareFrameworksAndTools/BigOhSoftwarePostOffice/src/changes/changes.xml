@@ -1,0 +1,42 @@
+<document xmlns="http://maven.apache.org/changes/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+          
+          <!-- See also http://maven.apache.org/plugins/maven-changes-plugin/changes.html -->
+          
+  <properties>
+    <title>Project Change History</title>
+    <author email="bigohsoftware@gmail.com">Dave W.</author>
+  </properties>
+  <body>
+  	<release version="2.2" date="2010-07-05" description="Move SVN Repository Location">
+      <action dev="Dave W." type="update">
+        Moved all big-oh.net projects into a Google code SVN repository: https://big-oh.googlecode.com/svn/
+      </action>
+    </release>
+  
+  	<release version="2.1" date="2010-06-29" description="Correct Project Domain Name">
+      <action dev="Dave W." type="update">
+        Updated all java class packages to be rooted under 'net.big_oh' instead of 'com.bigohsoftware'.
+      </action>
+      <action dev="Dave W." type="update">
+        Changed Maven group ID from 'com.bigohsoftware' to 'net.big_oh'.
+      </action>
+    </release>
+  
+    <release version="2.0" date="2010-06-08" description="Migrate Project Build to Maven">
+      <action dev="Dave W." type="update">
+        Updated this project to use a Maven-based build.
+      </action>
+      <action dev="Dave W." type="remove">
+        Removed Eclipse-generate meta-data files from project source control.
+      </action>
+    </release>
+
+    <release version="1.0" date="2009-06-16" description="Initial Project Creation">
+      <action dev="Dave W." type="update">
+        Created this Big-Oh Software project.
+      </action>
+    </release>
+  </body>
+</document>
