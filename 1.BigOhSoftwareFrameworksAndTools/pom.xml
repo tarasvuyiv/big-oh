@@ -3,7 +3,7 @@
 
 	<!-- 
 		Find a good overview of the Maven POM sections at
-		http://maven.apache.org/pom.html
+		http://maven.apache.org/pom.html 
 	-->
 
 	<parent>
