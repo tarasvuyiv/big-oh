@@ -1,0 +1,133 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 
+		Find a good overview of the Maven POM sections at
+		http://maven.apache.org/pom.html
+	-->
+
+	<groupId>net.big_oh</groupId>
+	<artifactId>AbstractBasePom</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>BigOhSoftware Abstract Base POM</name>
+	<description>This reusable POM project defines some general, reusable POM defaults.</description>
+	<url>http://www.big-oh.net/</url>
+
+	<build>
+
+		<!-- Configure default plugin _preferences_ -->
+		<pluginManagement>
+			<plugins>
+				<!-- Fail the build if compile dependencies are jacked -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<configuration>
+						<failOnWarning>true</failOnWarning>
+						<ignoreNonCompile>true</ignoreNonCompile>
+					</configuration>
+				</plugin>
+				<!-- Set javadoc features -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<quiet />
+						<show>public</show>
+						<author>false</author>
+					</configuration>
+				</plugin>
+				<!-- Configure surefire test properties -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					</configuration>
+				</plugin>
+				<!-- Configure the release plugin behavior -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<resume>false</resume>
+						<preparationGoals>clean install</preparationGoals>
+					</configuration>
+				</plugin>
+			</plugins>
+
+		</pluginManagement>
+
+		<!-- Define global plugin _executions_ -->
+		<plugins>
+			<!-- Verify dependencies during build/verify-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>analyze</id>
+						<goals>
+							<goal>analyze-only</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Build a sources jar during the package phase -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<reporting>
+
+		<!-- All plugins defined in this section should list explicit versions ... see the flame war at http://jira.codehaus.org/browse/MPIR-195 -->
+
+		<!-- Define global reporting plugins -->
+		<plugins>
+			<!-- Configure project info reports plugin to avoid annoying invalid URL warning on SCP-based repository  -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+			</plugin>
+			<!-- 
+				Include javadoc in the site
+				See also http://maven.apache.org/plugins/maven-javadoc-plugin/ 
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.5</version>
+				<!--
+					From http://maven.apache.org/guides/mini/guide-configuring-plugins.html#Using_the_reporting_Tag_VS_build_Tag ... The 'mvn site' command "uses only the parameters defined in the <configuration/> element of each reporting Plugin specified in the
+					<reporting/> element, i.e. site always ignores the parameters defined in the <configuration/> element of each plugin specified in <build/>."
+				-->
+				<configuration>
+					<quiet />
+					<show>public</show>
+					<author>false</author>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</reporting>
+
+</project>
