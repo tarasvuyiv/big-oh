@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 
+		Find a good overview of the Maven POM sections at
+		http://maven.apache.org/pom.html
+	 -->
+
+	<groupId>net.big_oh</groupId>
+	<artifactId>0.BigOhSoftwarePoms</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+	<name>BigOhSoftware POMs</name>
+	<description>This is the top-level container for Big-Oh Software's reusable POM projects.</description>
+	<url>http://www.big-oh.net/</url>
+
+	<modules>
+		<module>AbstractBasePom</module>
+		<module>BigOhSoftwareBasePom</module>
+		<module>BigOhSoftwareSiteSkin</module>
+	</modules>
+
+</project>
