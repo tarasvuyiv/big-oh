@@ -1,0 +1,121 @@
+ -----
+ Introduction
+ -----
+ Dave W.
+ -----
+ 2010-06-12
+ -----
+
+Overview
+
+	The CommonWeb framework offers Servlets, Filters & Liteners to help ease the development of web applications.
+	The frameworks goal is to provide reusable components that can be unobtrusively added to web applications in
+	order to make them more easily understood and maintained.
+
+Usage
+
+* RequestLoggerListener
+
+	Java's web stack is great at abstracting away some of the more mundane HTTP details that underly all web applications.
+	But, a times during development, it can be useful to understand the incoming HTTp requests being made against the server.
+	The RequestLoggerListener is a great tool for logging such requests, increasing their visibility during application development.
+
++-----+	
+<!-- web.xml snippet -->
+
+<listener>
+	<listener-class>net.big_oh.common.web.impl.RequestLoggerListener</listener-class>
+</listener>
++-----+	
+
+	After adding the listener to your web.xml as in the example above, you'll notice that HTTP requests are now logged to your 
+	console.  Here's an example of a logged HTTP request.
+	
+--------------------------------------------------------------------
+[INFO] RequestLoggerListener - REQUEST  -- START  -- HTTP/1.1 request from localhost (0:0:0:0:0:0:0:1) for resource http://localhost:8080/SandboxWeb/ (GET) --  jSessionId: B47E91D40F85BA1B8B3C8D9A290B69E6 --  userName: unknown
+
+... other statements logged during request processing ...
+
+[INFO] RequestLoggerListener - REQUEST  -- FINISH -- HTTP/1.1 request from localhost (0:0:0:0:0:0:0:1) for resource http://localhost:8080/SandboxWeb/ (GET) --  jSessionId: B47E91D40F85BA1B8B3C8D9A290B69E6 --  userName: unknown
+--------------------------------------------------------------------	
+
+* SimpleSessionTrackingListener
+
+	Lastly, tracking the current users of a deployed web application can provide useful diagnostic info?  Running out of 
+	heap space on your web server?  Are resources exhausted by a misbehaving process?  Or perhaps the root cause is too 
+	many user sessions?  The SimpleSessionTrackingListener can help you detect the later scenario.
+
++-----+	
+<!-- web.xml snippet -->
+
+<listener>
+	<listener-class>net.big_oh.common.web.listener.session.SimpleSessionTrackingListener</listener-class>
+</listener>
++-----+	
+
+	Once you've added the SimpleSessionTrackingListener to your web application's deployment descriptor, you can discover 
+	information about the currently active HttpSessions in your application.
+
++-----+	
+// gets a set of all active HttpSession objects for a deployed web application	
+SimpleSessionTrackingListener.getSessionsForContext(session.getServletContext())
++-----+	
+
+* ResponseSizeMonitorFilter
+
+	As web applications become richer, the size of the HTTP responses that they generate has tended to increase.
+	Cautious web developers will want to keep a watchful eye on their response sizes, with an eye towards minimizing 
+	network utilization.
+
++-----+	
+<!-- web.xml snippet -->
+
+<filter>
+	<filter-name>ResponseSizeMonitorFilter</filter-name>
+	<filter-class>net.big_oh.common.web.impl.ResponseSizeMonitorFilter</filter-class>
+</filter>
+
+<filter-mapping>
+	<filter-name>ResponseSizeMonitorFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
++-----+	
+
+	After enabling a filer as in the example above, you'll notice that HTTP response sizes are now logged to your 
+	console.  Here's an example of a logged HTTP response size.
+
+----------------------------------------------------------	
+[INFO] ResponseSizeMonitorFilter - RESPONSE -- FINISH -- Response for the requested url (http://localhost:8080/SandboxWeb/) contained about 0.51 kilobytes.
+----------------------------------------------------------		
+
+* IPAddressFilter
+
+	Filters are a powerful facet of the Servlet specification and can be used to alter, redirect or reject incoming requests.
+	The IPAddressFilter can be deployed in your web application in order to grant or revoke access at the URL level.
+
++-----+	
+<!-- web.xml snippet -->
+
+<filter>
+	<filter-name>IPAddressFilter</filter-name>
+	<filter-class>net.big_oh.common.web.filters.ipaddress.IPAddressFilter</filter-class>
+	<init-param>
+		<!-- White list rules take precedence over black list rules.-->
+		<param-name>net.big_oh.common.web.filters.ipaddress.ClasslessInterDomainRoutingWhiteListFilterRule</param-name>
+		<param-value>127.0.0.1/32</param-value>
+	</init-param>
+	<init-param>
+		<param-name>net.big_oh.common.web.filters.ipaddress.ClasslessInterDomainRoutingBlackListFilterRule</param-name>
+		<param-value>
+			127.0.0.1/24
+		</param-value>
+	</init-param>
+</filter>
+
+<filter-mapping>
+	<filter-name>IPAddressFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+</filter-mapping>
++-----+	
+
+~~See also http://maven.apache.org/doxia/references/apt-format.html for a tutorial on the APT document format.
