@@ -40,8 +40,7 @@
 	<licenses>
 		<license>
 			<name>Big-Oh Software's MIT-style License</name>
-			<!-- TODO DSW Provide a friendlier URL for this -->
-			<url>http://en.wikipedia.org/wiki/MIT_License#License_terms</url>
+			<url>http://www.big-oh.net/license.jsp</url>
 			<comments>The crux of that license is that, while Big-Oh Software retains a copyright on the code, you may freely use it in your projects.</comments>
 		</license>
 	</licenses>
