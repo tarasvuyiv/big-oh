@@ -25,7 +25,7 @@
 		<developer>
 			<id>Dave W.</id>
 			<name>Dave W.</name>
-			<email>bigohsoftware@gmail.com</email>
+			<email>bigohsoftware at gmail dot com</email>
 			<url>http://www.big-oh.net/contact.jsp</url>
 			<organization>Big-Oh Software</organization>
 			<organizationUrl>http://www.big-oh.net/</organizationUrl>
@@ -66,6 +66,8 @@
 		<site>
 			<id>net.big-oh.website</id>
 			<name>Big-Oh Software Website</name>
+			<id>googlecode</id>
+            <url>svn:https://sparkle-g.googlecode.com/svn/site/${pom.version}</url>
 			<url>scp://big-oh.net/Users/davewingate/Sites/BigOhSoftwareSite/</url>
 		</site>
 		<repository>
