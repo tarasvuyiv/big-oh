@@ -14,7 +14,7 @@
 
 	<groupId>net.big_oh</groupId>
 	<artifactId>1.BigOhSoftwareFrameworksAndTools</artifactId>
-	<version>2.2</version>
+	<version>2.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Framework and Tool Artifacts</name>
 	<description>This is the top-level container for Big-Oh Software's frameworks and tools.</description>
@@ -151,10 +151,4 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-  <scm>
-    <connection>scm:svn:dav:https://big-oh.googlecode.com/svn/tags/1.BigOhSoftwareFrameworksAndTools-2.2</connection>
-    <developerConnection>scm:svn:dav:https://big-oh.googlecode.com/svn/tags/1.BigOhSoftwareFrameworksAndTools-2.2</developerConnection>
-    <url>scm:svn:dav:https://big-oh.googlecode.com/svn/tags/1.BigOhSoftwareFrameworksAndTools-2.2</url>
-  </scm>
 </project>
