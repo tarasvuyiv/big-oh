@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.big_oh.resourcestats.domain">
+	<class name="Resource" table="RESOURCE" mutable="false">
+
+		<id name="resourceLocator" column="RESOURCE_LOCATOR" type="string">
+			<generator class="assigned" />
+		</id>
+
+		<set name="resourceRequests" access="field" inverse="true" lazy="extra">
+			<key column="RESOURCE_LOCATOR" />
+			<one-to-many class="ResourceRequest" />
+		</set>
+		
+		<query name="getMostPopularResources">
+			<![CDATA[
+				select 
+				distinct 
+				r, count(rr) 
+				from 
+				Resource r 
+				left outer join 
+				r.resourceRequests rr 
+				where 
+				rr.requestedOn > :since 
+				group by 
+				r 
+				order by 
+				count(rr) desc 
+			]]>
+		</query>
+		
+		<query name="getSlowestResources">
+			<![CDATA[
+				select 
+				distinct 
+				r, avg(rr.millisecondsToServiceRequest) 
+				from 
+				Resource r 
+				left outer join 
+				r.resourceRequests rr 
+				group by 
+				r 
+				order by 
+				avg(rr.millisecondsToServiceRequest) desc 
+			]]>
+		</query>
+
+	</class>
+</hibernate-mapping>

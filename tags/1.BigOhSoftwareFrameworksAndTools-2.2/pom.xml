@@ -1,0 +1,160 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 
+		Find a good overview of the Maven POM sections at
+		http://maven.apache.org/pom.html 
+	-->
+
+	<parent>
+		<artifactId>BigOhSoftwareBasePom</artifactId>
+		<groupId>net.big_oh</groupId>
+		<version>1.0</version>
+	</parent>
+
+	<groupId>net.big_oh</groupId>
+	<artifactId>1.BigOhSoftwareFrameworksAndTools</artifactId>
+	<version>2.2</version>
+	<packaging>pom</packaging>
+	<name>Framework and Tool Artifacts</name>
+	<description>This is the top-level container for Big-Oh Software's frameworks and tools.</description>
+	<url>http://www.big-oh.net/</url>
+
+	<modules>
+		<module>BigOhSoftwareCommon</module>
+		<module>BigOhSoftwareCommonWeb</module>
+		<module>BigOhSoftwareHibernate</module>
+		<module>BigOhSoftwareJDBCProxy</module>
+		<module>BigOhSoftwarePostOffice</module>
+		<module>BigOhSoftwareResourceRequestStats</module>
+	</modules>
+
+	<properties>
+		<org.hibernate.version>3.3.1.GA</org.hibernate.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Unit Testing - - - - - - - - - - - - - - - - - -  -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.subethamail</groupId>
+				<artifactId>subethasmtp-wiser</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<!-- Apache Commons - - - - - - - - - - - - - - - - - - -->
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>1.3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbutils</groupId>
+				<artifactId>commons-dbutils</artifactId>
+				<version>1.2</version>
+				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>commons-email</groupId>
+				<artifactId>commons-email</artifactId>
+				<version>1.1</version>
+				<type>jar</type>
+			</dependency>
+			<!-- JSP & Servlet - - - - - - - - - - - - - - - - - - -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<!-- provides JSTL -->
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>1.1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.1.2</version>
+			</dependency>
+			<!-- JavaMail - - - - - - - - - - - - - - - - - - -->
+			<dependency>
+				<groupId>javax.activation</groupId>
+				<artifactId>activation</artifactId>
+				<version>1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4.1</version>
+			</dependency>
+			<!-- Hibernate - - - - - - - - - - - - - - - - - - -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${org.hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-c3p0</artifactId>
+				<version>${org.hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-ehcache</artifactId>
+				<version>${org.hibernate.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>3.8.0.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-jcl</artifactId>
+				<version>1.5.2</version>
+			</dependency>
+			<!-- Database Drivers - - - - - - - - - - - - - - - - - - -->
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>8.3-603.jdbc4</version>
+			</dependency>
+			<dependency>
+				<groupId>hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>1.8.0.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+  <scm>
+    <connection>scm:svn:http://big-oh.googlecode.com/svn/tags/1.BigOhSoftwareFrameworksAndTools-2.2</connection>
+    <developerConnection>scm:svn:https://big-oh.googlecode.com/svn/tags/1.BigOhSoftwareFrameworksAndTools-2.2</developerConnection>
+    <url>https://code.google.com/p/big-oh/source/browse/#svn/tags/1.BigOhSoftwareFrameworksAndTools-2.2</url>
+  </scm>
+</project>
