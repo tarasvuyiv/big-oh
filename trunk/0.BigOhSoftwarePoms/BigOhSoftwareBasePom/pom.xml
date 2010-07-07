@@ -66,8 +66,6 @@
 		<site>
 			<id>net.big-oh.website</id>
 			<name>Big-Oh Software Website</name>
-			<id>googlecode</id>
-            <url>svn:https://sparkle-g.googlecode.com/svn/site/${pom.version}</url>
 			<url>scp://big-oh.net/Users/davewingate/Sites/BigOhSoftwareSite/</url>
 		</site>
 		<repository>
