@@ -64,6 +64,31 @@
 	</properties>
 
 	<build>
+	
+		<!-- OVERRIDE default plugin _preferences_ -->
+		<pluginManagement>
+			<plugins>
+				<!-- Configure surefire test properties -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration> 
+						<redirectTestOutputToFile>true</redirectTestOutputToFile>
+						<!-- 
+							Pass the system property-defined SMTP password into the test execution context.
+							That system property should be defined externaly in a build profile within settings.xml.
+						-->
+						<systemProperties>
+							<property>
+								<name>postoffice.smtpPassword</name>
+								<value>${postoffice.smtpPassword}</value>
+							</property>
+						</systemProperties>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	
 		<finalName>BigOhSoftwarePostOffice</finalName>
 	</build>
 

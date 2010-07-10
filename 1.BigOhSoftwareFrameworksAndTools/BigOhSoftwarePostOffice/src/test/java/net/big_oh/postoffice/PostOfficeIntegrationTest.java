@@ -1,12 +1,12 @@
 package net.big_oh.postoffice;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
-
-import net.big_oh.postoffice.IPostOfficeService;
-import net.big_oh.postoffice.PostOfficeServiceFactory;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.mail.EmailException;
@@ -40,8 +40,30 @@ import org.junit.Test;
  */
 
 /**
+ * <p>
  * An integration test used to confirm whether a default instance of the
  * {@link IPostOfficeService} can send email via an external SMTP server.
+ * </p>
+ * 
+ * <p>
+ * In general, details of the SMTP server used by this test are define in the postoffice.properties file.  The only exception
+ * is that the test expects to find the related password defined in a system property.  If you're executing this test from within an IDE,
+ * you'll likely need to add a JVM argument to your run configuration:
+ * <pre>-Dpostoffice.smtpPassword=super_secret_password</pre>
+ * Alternatively, you might be executing this test as part of the Maven build lifcycle, in which case you'll
+ * want to define the needed password in your settings.xml file:
+ * <pre>
+ * &lt;profile&gt;
+ *	 &lt;id&gt;BigOhSoftware&lt;/id&gt;
+ * 	 &lt;activation&gt;
+ * 		&lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+ *	 &lt;/activation&gt;
+ *	 &lt;properties&gt;
+ * 		&lt;postoffice.smtpPassword&gt;super_secret_password&lt;/postoffice.smtpPassword&gt;
+ *	 &lt;/properties&gt;
+ * &lt;/profile&gt;
+ * </pre>
+ * </p>
  * 
  * @author dwingate
  * @version Jun 2, 2010
@@ -59,13 +81,20 @@ public class PostOfficeIntegrationTest
 	public void setUp() throws Exception
 	{
 
-		postOfficeService = PostOfficeServiceFactory.getInstance();
-
 		attachment1 = File.createTempFile(this.getClass().getSimpleName(), ".txt");
 		FileUtils.writeStringToFile(attachment1, "first attachment");
 
 		attachment2 = File.createTempFile(this.getClass().getSimpleName(), ".txt");
 		FileUtils.writeStringToFile(attachment2, "second attachment");
+		
+		Properties postOfficeProperties = PostOfficeServiceFactory.readDefaultPostOfficeProperties();
+
+		String smtpPassword = System.getProperty(PostOfficeServiceFactory.PROPERTY_KEY_SMTP_PASSWORD);
+		assertNotNull("Failed to locate SMTP password in expected system property: " + PostOfficeServiceFactory.PROPERTY_KEY_SMTP_PASSWORD, smtpPassword);
+
+		postOfficeProperties.setProperty(PostOfficeServiceFactory.PROPERTY_KEY_SMTP_PASSWORD, smtpPassword);
+
+		postOfficeService = PostOfficeServiceFactory.getInstance(postOfficeProperties);
 
 	}
 
