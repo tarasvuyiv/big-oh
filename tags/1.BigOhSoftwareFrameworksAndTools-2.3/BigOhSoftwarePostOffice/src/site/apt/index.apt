@@ -1,0 +1,33 @@
+ -----
+ Introduction
+ -----
+ Dave W.
+ -----
+ 2010-06-12
+ -----
+
+Overview
+
+	An uber-thin wrapper around the Apache Commons Email library, the PostOffice framework simplifies the sending of email from Java programs. 
+	PostOffice allows you to send an email message with a single line of code!
+
+Usage
+
+	Sending emails with PostOffice is as easy as:
+	
++-----+
+PostOfficeServiceFactory.getInstance().sendMail("foo@bar.com", "Hello ...", "World!");
++-----+
+	
+	That's it! The constructor for the PostOffice object will handle all the necessary SMTP configuration, 
+	reading configuration values from a postoffice.properties file that you add to your classpath. Here's an 
+	example postoffice.properties file:
+	
++-----+
+#postoffice.properties
+postoffice.host=your.smtp_host
+postoffice.from=your.project@your.domain
+postoffice.debug=false
++-----+
+	
+~~See also http://maven.apache.org/doxia/references/apt-format.html for a tutorial on the APT document format.
