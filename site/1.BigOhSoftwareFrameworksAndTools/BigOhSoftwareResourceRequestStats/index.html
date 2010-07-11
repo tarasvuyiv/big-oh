@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>ResourceRequestStats Tool - Introduction</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Dave W." />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            ResourceRequestStats Tool
+    
+            </span>
+                          <span id="bannerRight">
+    
+            Big-Oh Software ... computer scientists find big-oh!!
+    
+            </span>
+            <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+            
+  
+    
+            <div class="xleft">
+        Version: 2.3-SNAPSHOT
+              </div>
+            <div class="xright">      
+  
+
+  
+    
+            
+  
+    
+             Last Published: 2010-07-10
+            </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+            
+  
+    
+                   <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+            
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Overview</h2>
+<p>Plugging the ResourceRequestStats tool into your web application allows you to track requests for HTTP application resources. By tracking that usage information, you can discover which which resources are most popular and which users make heaviest use of the application.</p>
+</div>
+<div class="section"><h2>Usage</h2>
+<div class="section"><h3>ResourceRequestStatsTrackerFilter </h3>
+<p>Adding the ResourceRequestStats tool to your web application is as simple as adding a Filter declaration to your application's deployment descriptor. Following is an example that tracks all requests for JSP pages.</p>
+<div class="source"><pre>&lt;!-- web.xml snippet --&gt;
+
+&lt;filter&gt;
+        &lt;filter-name&gt;ResourceRequestStatsTrackerFilter&lt;/filter-name&gt;
+        &lt;filter-class&gt;net.big_oh.resourcestats.web.filter.ResourceRequestStatsTrackerFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
+
+&lt;filter-mapping&gt;
+        &lt;filter-name&gt;ResourceRequestStatsTrackerFilter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Hibernate Configuration</h3>
+<p>Once configured, the ResourceRequestStatsTrackerFilter will use Hibernate to persist data to the database of your choice.</p>
+<div class="source"><pre>&lt;!-- hibernate.cfg.xml snippet --&gt;
+
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+    
+        ...
+
+                &lt;!--  Add mapping files for all entities  --&gt;
+                &lt;mapping resource=&quot;Resource.hbm.xml&quot; /&gt;
+                &lt;mapping resource=&quot;ResourceRequest.hbm.xml&quot; /&gt;
+                &lt;mapping resource=&quot;Requestor.hbm.xml&quot; /&gt;
+                
+                ...
+                
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Second-Level Cache</h3>
+<p>Performance-critical web applications should also enable second-level caching for immutable domain model objects.</p>
+<div class="source"><pre>&lt;!-- hibernate.cfg.xml snippet --&gt;
+
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+    
+        ...
+
+                &lt;!-- Enable the second-level cache  --&gt;
+                &lt;property name=&quot;cache.provider_class&quot;&gt;org.hibernate.cache.EhCacheProvider&lt;/property&gt;
+                &lt;property name=&quot;cache.use_second_level_cache&quot;&gt;true&lt;/property&gt; 
+                
+                &lt;!--  Configure caching for some immutable objects --&gt;
+                &lt;class-cache usage=&quot;read-only&quot; class=&quot;net.big_oh.resourcestats.domain.Requestor&quot;/&gt;
+                &lt;class-cache usage=&quot;read-only&quot; class=&quot;net.big_oh.resourcestats.domain.Resource&quot;/&gt;
+                
+                ...
+                
+    &lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;</pre>
+</div>
+<div class="source"><pre>&lt;!-- ehcache.xml snippet --&gt;
+
+&lt;!-- There are potentially many thousands of Requestors, each of which is immutable. --&gt;    
+&lt;cache name=&quot;net.big_oh.resourcestats.domain.Requestor&quot;
+    maxElementsInMemory=&quot;5000&quot;
+    eternal=&quot;false&quot;
+    timeToIdleSeconds=&quot;300&quot;
+    timeToLiveSeconds=&quot;300&quot;
+    overflowToDisk=&quot;false&quot;
+    /&gt;
+    
+&lt;!-- There are relatively few Resources, each of which is immutable. --&gt;        
+&lt;cache name=&quot;net.big_oh.resourcestats.domain.Resource&quot;
+    maxElementsInMemory=&quot;1000&quot;
+    eternal=&quot;true&quot;
+    timeToIdleSeconds=&quot;0&quot;
+    timeToLiveSeconds=&quot;0&quot;
+    overflowToDisk=&quot;false&quot;
+    /&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Querying Resource Statistics</h3>
+<p>Once properly configured, you can extract historical resource request details using the project's DAOs. For example ...</p>
+<div class="source"><pre>DAOFactory.getResourceDAO().getMostPopularResources(limit)</pre>
+</div>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2008-2010
+    
+          Big-Oh Software
+          
+  
+
+  
+    
+            
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>
