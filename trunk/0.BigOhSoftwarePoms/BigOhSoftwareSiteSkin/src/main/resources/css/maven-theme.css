@@ -40,6 +40,10 @@ a:visited  {
 a:active, a:hover {
   color:#69c;
 }
+/*
+
+7/11/2010 -- Commented out images on "special" links
+
 #legend li.externalLink {
   background: url(../images/external.png) left top no-repeat;
   padding-left: 18px;
@@ -56,6 +60,8 @@ a.newWindow, a.newWindow:link, a.newWindow:visited, a.newWindow:active, a.newWin
   background: url(../images/newwindow.png) right center no-repeat;
   padding-right: 18px;
 }
+*/
+
 h2 {
   padding: 4px 4px 4px 6px;
   border: 1px solid #999;
