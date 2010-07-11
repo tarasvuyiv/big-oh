@@ -1,5 +1,0 @@
-net.big_oh.common.jdbc
-net.big_oh.common.jdbc.event
-net.big_oh.common.jdbc.event.listener
-net.big_oh.common.jdbc.event.listener.logger
-net.big_oh.common.jdbc.event.listener.safety
