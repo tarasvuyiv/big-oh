@@ -2,7 +2,7 @@
 
 = Downloads =
 
-You can manually download a jar, war or pom by browsing the projects source controlled micro [http://code.google.com/p/big-oh/source/browse/#svn/repos/releases repository].
+You can manually download a jar, war or pom file by browsing the project's source controlled micro [http://code.google.com/p/big-oh/source/browse/#svn/repos/releases repository].
 
 
 = Maven =
