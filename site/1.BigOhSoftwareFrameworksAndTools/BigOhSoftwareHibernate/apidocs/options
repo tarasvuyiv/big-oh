@@ -1,0 +1,25 @@
+-classpath
+'/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareHibernate/target/classes:/home/dwingate/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar:/home/dwingate/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/home/dwingate/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/dwingate/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/home/dwingate/.m2/repository/antlr/antlr/2.7.6/antlr-2.7.6.jar:/home/dwingate/.m2/repository/javax/servlet/servlet-api/2.4/servlet-api-2.4.jar:/home/dwingate/.m2/repository/org/slf4j/slf4j-api/1.5.2/slf4j-api-1.5.2.jar:/home/dwingate/.m2/repository/javax/servlet/jsp-api/2.0/jsp-api-2.0.jar:/home/dwingate/.m2/repository/javax/transaction/jta/1.1/jta-1.1.jar:/home/dwingate/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar:/home/dwingate/.m2/repository/org/hibernate/hibernate-core/3.3.1.GA/hibernate-core-3.3.1.GA.jar'
+-encoding
+'UTF-8'
+-public
+-sourcepath
+'/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareHibernate/src/main/java'
+-bottom
+'Copyright &#169; 2008-2010 <a href="http://www.big-oh.net/">Big-Oh Software</a>. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareHibernate/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'HibernateExtension Library 2.3 API'
+-linkoffline
+'http://www.big-oh.net/BigOhSoftwareCommon/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommon/target/site/apidocs'
+-linkoffline
+'http://www.big-oh.net/BigOhSoftwareCommonWeb/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommonWeb/target/site/apidocs'
+-use
+-version
+-windowtitle
+'HibernateExtension Library 2.3 API'
