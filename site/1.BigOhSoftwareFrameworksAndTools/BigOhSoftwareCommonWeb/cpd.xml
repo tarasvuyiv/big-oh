@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd-cpd>
 <duplication lines="57" tokens="102">
-<file line="14" path="/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/BigOhSoftwareCommonWeb/src/main/java/net/big_oh/common/web/tags/BigOhBodyTagSupport.java"/>
-<file line="23" path="/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/BigOhSoftwareCommonWeb/src/main/java/net/big_oh/common/web/tags/BigOhTagSupport.java"/>
+<file line="14" path="/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommonWeb/src/main/java/net/big_oh/common/web/tags/BigOhBodyTagSupport.java"/>
+<file line="23" path="/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommonWeb/src/main/java/net/big_oh/common/web/tags/BigOhTagSupport.java"/>
 <codefragment>
 <![CDATA[
 	public BigOhTagSupport()
