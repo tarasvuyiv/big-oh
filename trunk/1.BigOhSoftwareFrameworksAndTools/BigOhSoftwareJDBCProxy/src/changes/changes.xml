@@ -9,6 +9,12 @@
     <author email="bigohsoftware@gmail.com">Dave W.</author>
   </properties>
   <body>
+  	<release version="2.3" date="2010-07-11" description="Moved Project Site">
+      <action dev="Dave W." type="update">
+        Updated so that maven-generated site is hosted in google code SVN repository.
+      </action>
+    </release>
+  
   	<release version="2.2" date="2010-07-05" description="Move SVN Repository Location">
       <action dev="Dave W." type="update">
         Moved all big-oh.net projects into a Google code SVN repository: https://big-oh.googlecode.com/svn/
