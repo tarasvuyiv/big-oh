@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>1.BigOhSoftwareFrameworksAndTools</artifactId>
+		<groupId>net.big_oh</groupId>
+		<version>2.3</version>
+	</parent>
+
+	<groupId>net.big_oh</groupId>
+	<artifactId>BigOhSoftwarePostOffice</artifactId>
+	<name>PostOffice Framework</name>
+	<description>This module provides a framework that simplifies sending email.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.subethamail</groupId>
+			<artifactId>subethasmtp-wiser</artifactId>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-email</groupId>
+			<artifactId>commons-email</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>BigOhSoftwareCommon</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+	
+	<properties>
+		<!-- Set a custom coverage quota for this project -->
+		<codeCoverageFailureThreshold>60</codeCoverageFailureThreshold>
+	</properties>
+
+	<build>
+	
+		<!-- OVERRIDE default plugin _preferences_ -->
+		<pluginManagement>
+			<plugins>
+				<!-- Configure surefire test properties -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration> 
+						<redirectTestOutputToFile>true</redirectTestOutputToFile>
+						<!-- 
+							Pass the system property-defined SMTP password into the test execution context.
+							That system property should be defined externaly in a build profile within settings.xml.
+						-->
+						<systemProperties>
+							<property>
+								<name>postoffice.smtpPassword</name>
+								<value>${postoffice.smtpPassword}</value>
+							</property>
+						</systemProperties>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	
+		<finalName>BigOhSoftwarePostOffice</finalName>
+	</build>
+
+</project>
