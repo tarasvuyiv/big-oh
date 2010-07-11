@@ -61,6 +61,12 @@
 	
 	<!-- Define non-standard repositories required to build these Big-Oh Software projects -->
 	<repositories>
+		<!-- Pickup the Big-oh repository -->
+        <repository>
+                <id>net.big_oh</id>
+                <name>Big-Oh Software's Maven Repository</name>
+                <url>https://big-oh.googlecode.com/svn/repos/releases</url>
+        </repository>
 		<!-- Support resolution of wagon-svn from java.net -->
 		<repository>
 			<id>maven2-repository.dev.java.net</id>
