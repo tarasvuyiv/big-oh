@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2010-07-10T19:53:50.545">
+<file name="/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/BigOhSoftwareJDBCProxy/src/main/java/net/big_oh/common/jdbc/JdbcDriverProxy.java">
+<violation beginline="93" endline="133" begincolumn="30" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="net.big_oh.common.jdbc" class="JdbcDriverProxy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="167" endline="170" begincolumn="23" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="net.big_oh.common.jdbc" class="JdbcDriverProxy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="181" endline="191" begincolumn="23" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="net.big_oh.common.jdbc" class="JdbcDriverProxy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="204" endline="228" begincolumn="23" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="net.big_oh.common.jdbc" class="JdbcDriverProxy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="230" endline="238" begincolumn="23" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="net.big_oh.common.jdbc" class="JdbcDriverProxy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+</file>
+</pmd>
