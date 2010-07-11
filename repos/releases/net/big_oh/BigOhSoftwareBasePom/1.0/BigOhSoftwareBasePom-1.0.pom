@@ -13,7 +13,7 @@
 	<name>BigOhSoftware Base POM</name>
 	<description>This POM project extends the abstract base POM to apply some BigOhSoftware related values.</description>
 	<inceptionYear>2008</inceptionYear>
-	<url>http://www.big-oh.net/</url>
+	<url>http://code.google.com/p/big-oh/</url>
 
 	<!-- Organization details for Big-Oh Software -->
 	<organization>
