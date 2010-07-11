@@ -51,7 +51,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version Aug 22, 2009</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;17</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;18</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> JDBCSafetyListener <span class="keyword">extends</span> JDBCEventAdapter</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;18</td>  <td class="nbHitsCovered">&nbsp;12</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> JDBCSafetyListener <span class="keyword">extends</span> JDBCEventAdapter</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;19</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;{</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;20</td>  <td class="nbHits">&nbsp;</td>
@@ -64,25 +64,25 @@
   <td class="src"><pre class="src">&nbsp;        {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;24</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;25</td>  <td class="nbHitsCovered"><a title="Line 25: Conditional coverage 100% (2/2).">&nbsp;7</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 25: Conditional coverage 100% (2/2).">                <span class="keyword">for</span> (String sqlCommand : event.getSqlCommands())</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;25</td>  <td class="nbHitsCovered"><a title="Line 25: Conditional coverage 100% (2/2).">&nbsp;14</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 25: Conditional coverage 100% (2/2).">                <span class="keyword">for</span> (String sqlCommand : event.getSqlCommands())</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;26</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;27</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;28</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        <span class="comment">// prevent execution of DELETE statements with no WHERE clause</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;29</td>  <td class="nbHitsUncovered"><a title="Line 29: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;7</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 29: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">                        <span class="keyword">if</span> (RegExpHelper.matches(sqlCommand.toUpperCase(), <span class="string">"^DELETE\\s.*"</span>) &amp;&amp; !RegExpHelper.contains(sqlCommand.toUpperCase(), <span class="string">"WHERE"</span>))</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;29</td>  <td class="nbHitsUncovered"><a title="Line 29: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">&nbsp;14</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 29: Conditional coverage 75% (3/4) [each condition: 50%, 100%].">                        <span class="keyword">if</span> (RegExpHelper.matches(sqlCommand.toUpperCase(), <span class="string">"^DELETE\\s.*"</span>) &amp;&amp; !RegExpHelper.contains(sqlCommand.toUpperCase(), <span class="string">"WHERE"</span>))</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;30</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;31</td>  <td class="nbHitsCovered">&nbsp;1</td>  <td class="src"><pre class="src">&nbsp;                                <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">"Cowardly refusing to excute a DELETE statement that has no WHERE clause.  Use the TRUNCATE command if you really want to remove all data from a table?"</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;31</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;                                <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">"Cowardly refusing to excute a DELETE statement that has no WHERE clause.  Use the TRUNCATE command if you really want to remove all data from a table?"</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;32</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;33</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        </pre></td></tr>
 <tr>  <td class="numLine">&nbsp;34</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        <span class="comment">// prevent execution of statements that look suspiciously like an SQL injection attack via inserted ";"</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;35</td>  <td class="nbHitsCovered"><a title="Line 35: Conditional coverage 100% (2/2).">&nbsp;6</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 35: Conditional coverage 100% (2/2).">                        <span class="keyword">if</span> (RegExpHelper.contains(sqlCommand, <span class="string">";\\s*\\w+"</span>)) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;36</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;                                <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">"Cowardly refusing to excute a SQL statement that smells suspiciously like an SQL injection attack."</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;35</td>  <td class="nbHitsCovered"><a title="Line 35: Conditional coverage 100% (2/2).">&nbsp;12</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 35: Conditional coverage 100% (2/2).">                        <span class="keyword">if</span> (RegExpHelper.contains(sqlCommand, <span class="string">";\\s*\\w+"</span>)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;36</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;                                <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">"Cowardly refusing to excute a SQL statement that smells suspiciously like an SQL injection attack."</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;37</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;38</td>  <td class="nbHits">&nbsp;</td>
@@ -91,13 +91,13 @@
   <td class="src"><pre class="src">&nbsp;                }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;40</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        </pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;41</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;41</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;42</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9.4.1 on 7/10/10 11:06 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9.4.1 on 7/11/10 2:02 PM.</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2010-07-10T23:06:43.805">
-<file name="/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/BigOhSoftwareJDBCProxy/src/main/java/net/big_oh/common/jdbc/JdbcDriverProxy.java">
+<pmd version="4.2.5" timestamp="2010-07-11T14:02:39.953">
+<file name="/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareJDBCProxy/src/main/java/net/big_oh/common/jdbc/JdbcDriverProxy.java">
 <violation beginline="93" endline="133" begincolumn="30" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="net.big_oh.common.jdbc" class="JdbcDriverProxy" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
