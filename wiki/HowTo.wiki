@@ -1,0 +1,17 @@
+#summary This topic describes basic project lifecycle tasks associated with building & deploying the big-oh project.
+#labels Phase-Deploy
+
+= How to Build =
+
+This project is Maven based, so you can build & install a local copy by executing:
+
+<code>mvn clean install</code>
+
+= How to Deploy =
+
+Maven is also used to deploy this project's build artifacts.
+   * Jars, wars and poms are uploaded to a project-only micro [http://code.google.com/p/big-oh/source/browse/#svn/repos/releases/net/big_oh repository].
+   * The project's Maven-generated [http://code.google.com/p/big-oh/source/browse/#svn/site/1.BigOhSoftwareFrameworksAndTools site] is deployed to source control using the [https://wagon-svn.dev.java.net/ wagon-svn plugin].  That plugin unfortunately does not properly apply mime-type auto-properties.  As a result, some command-line intervention is necessary.
+      * <code>find . -name "*.html" -exec svn propset svn:mime-type text/html '{}' \;</code>
+      * <code>find . -name "*.css" -exec svn propset svn:mime-type text/css '{}' \;</code>
+  
