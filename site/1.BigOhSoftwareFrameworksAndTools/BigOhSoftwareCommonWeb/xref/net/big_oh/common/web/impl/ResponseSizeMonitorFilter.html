@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>ResponseSizeMonitorFilter xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../apidocs/net/big_oh/common/web/impl/ResponseSizeMonitorFilter.html">View Javadoc</a></div><pre>
+
+<a class="jxr_linenumber" name="1" href="#1">1</a>   <strong class="jxr_keyword">package</strong> net.big_oh.common.web.impl;
+<a class="jxr_linenumber" name="2" href="#2">2</a>   
+<a class="jxr_linenumber" name="3" href="#3">3</a>   <strong class="jxr_keyword">import</strong> java.text.DecimalFormat;
+<a class="jxr_linenumber" name="4" href="#4">4</a>   <strong class="jxr_keyword">import</strong> java.util.concurrent.ConcurrentHashMap;
+<a class="jxr_linenumber" name="5" href="#5">5</a>   
+<a class="jxr_linenumber" name="6" href="#6">6</a>   <strong class="jxr_keyword">import</strong> javax.servlet.ServletRequest;
+<a class="jxr_linenumber" name="7" href="#7">7</a>   <strong class="jxr_keyword">import</strong> javax.servlet.ServletResponse;
+<a class="jxr_linenumber" name="8" href="#8">8</a>   <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletRequest;
+<a class="jxr_linenumber" name="9" href="#9">9</a>   
+<a class="jxr_linenumber" name="10" href="#10">10</a>  <strong class="jxr_keyword">import</strong> net.big_oh.common.web.filters.response.ResponseObserverFilter;
+<a class="jxr_linenumber" name="11" href="#11">11</a>  
+<a class="jxr_linenumber" name="12" href="#12">12</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.logging.Log;
+<a class="jxr_linenumber" name="13" href="#13">13</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.logging.LogFactory;
+<a class="jxr_linenumber" name="14" href="#14">14</a>  
+<a class="jxr_linenumber" name="15" href="#15">15</a>  
+<a class="jxr_linenumber" name="16" href="#16">16</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../net/big_oh/common/web/impl/ResponseSizeMonitorFilter.html">ResponseSizeMonitorFilter</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../../net/big_oh/common/web/filters/response/ResponseObserverFilter.html">ResponseObserverFilter</a>
+<a class="jxr_linenumber" name="17" href="#17">17</a>  {
+<a class="jxr_linenumber" name="18" href="#18">18</a>  
+<a class="jxr_linenumber" name="19" href="#19">19</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Log logger = LogFactory.getLog(ResponseSizeMonitorFilter.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="20" href="#20">20</a>  
+<a class="jxr_linenumber" name="21" href="#21">21</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> ConcurrentHashMap&lt;Thread, Long&gt; threadToByteCountMap = <strong class="jxr_keyword">new</strong> ConcurrentHashMap&lt;Thread, Long&gt;();
+<a class="jxr_linenumber" name="22" href="#22">22</a>  
+<a class="jxr_linenumber" name="23" href="#23">23</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doBeforeResponseStarted(ServletRequest req, ServletResponse resp)
+<a class="jxr_linenumber" name="24" href="#24">24</a>  	{
+<a class="jxr_linenumber" name="25" href="#25">25</a>  		threadToByteCountMap.put(Thread.currentThread(), <strong class="jxr_keyword">new</strong> Long(0));
+<a class="jxr_linenumber" name="26" href="#26">26</a>  	}
+<a class="jxr_linenumber" name="27" href="#27">27</a>  
+<a class="jxr_linenumber" name="28" href="#28">28</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doAfterResponseFinished(ServletRequest req, ServletResponse resp)
+<a class="jxr_linenumber" name="29" href="#29">29</a>  	{
+<a class="jxr_linenumber" name="30" href="#30">30</a>  		<strong class="jxr_keyword">long</strong> numBytesInResponse = threadToByteCountMap.get(Thread.currentThread());
+<a class="jxr_linenumber" name="31" href="#31">31</a>  		logger.info(<span class="jxr_string">"RESPONSE -- FINISH -- Response for the requested url ("</span> + getUrl(req) + <span class="jxr_string">") contained about "</span> + <strong class="jxr_keyword">new</strong> DecimalFormat(<span class="jxr_string">"###,##0.00"</span>).format(numBytesInResponse / 1024.0) + <span class="jxr_string">" kilobytes."</span>);
+<a class="jxr_linenumber" name="32" href="#32">32</a>  
+<a class="jxr_linenumber" name="33" href="#33">33</a>  		<em class="jxr_comment">// remove entry in threadToByteCountMap so that the Long value can be</em>
+<a class="jxr_linenumber" name="34" href="#34">34</a>  		<em class="jxr_comment">// garbage collected</em>
+<a class="jxr_linenumber" name="35" href="#35">35</a>  		threadToByteCountMap.remove(Thread.currentThread());
+<a class="jxr_linenumber" name="36" href="#36">36</a>  	}
+<a class="jxr_linenumber" name="37" href="#37">37</a>  
+<a class="jxr_linenumber" name="38" href="#38">38</a>  	<strong class="jxr_keyword">private</strong> String getUrl(ServletRequest req)
+<a class="jxr_linenumber" name="39" href="#39">39</a>  	{
+<a class="jxr_linenumber" name="40" href="#40">40</a>  		<strong class="jxr_keyword">if</strong> (req instanceof HttpServletRequest)
+<a class="jxr_linenumber" name="41" href="#41">41</a>  		{
+<a class="jxr_linenumber" name="42" href="#42">42</a>  			<strong class="jxr_keyword">return</strong> ((HttpServletRequest) req).getRequestURL().toString();
+<a class="jxr_linenumber" name="43" href="#43">43</a>  		}
+<a class="jxr_linenumber" name="44" href="#44">44</a>  		<strong class="jxr_keyword">else</strong>
+<a class="jxr_linenumber" name="45" href="#45">45</a>  		{
+<a class="jxr_linenumber" name="46" href="#46">46</a>  			<strong class="jxr_keyword">return</strong> <span class="jxr_string">"unknown; non HTTP"</span>;
+<a class="jxr_linenumber" name="47" href="#47">47</a>  		}
+<a class="jxr_linenumber" name="48" href="#48">48</a>  	}
+<a class="jxr_linenumber" name="49" href="#49">49</a>  
+<a class="jxr_linenumber" name="50" href="#50">50</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doAfterCharsWritten(<strong class="jxr_keyword">char</strong>[] charsWritten)
+<a class="jxr_linenumber" name="51" href="#51">51</a>  	{
+<a class="jxr_linenumber" name="52" href="#52">52</a>  		<strong class="jxr_keyword">synchronized</strong> (threadToByteCountMap)
+<a class="jxr_linenumber" name="53" href="#53">53</a>  		{
+<a class="jxr_linenumber" name="54" href="#54">54</a>  			Long currentByteCount = threadToByteCountMap.get(Thread.currentThread());
+<a class="jxr_linenumber" name="55" href="#55">55</a>  			<em class="jxr_comment">// Note: assuming that print writer is using the ISO-8859-1</em>
+<a class="jxr_linenumber" name="56" href="#56">56</a>  			<em class="jxr_comment">// encoding, which prints 1 byte per character.</em>
+<a class="jxr_linenumber" name="57" href="#57">57</a>  			<em class="jxr_comment">// Would need to update if you want to support counting response</em>
+<a class="jxr_linenumber" name="58" href="#58">58</a>  			<em class="jxr_comment">// bytes for other CharSets.</em>
+<a class="jxr_linenumber" name="59" href="#59">59</a>  			threadToByteCountMap.put(Thread.currentThread(), <strong class="jxr_keyword">new</strong> Long(currentByteCount + (charsWritten.length * 1)));
+<a class="jxr_linenumber" name="60" href="#60">60</a>  		}
+<a class="jxr_linenumber" name="61" href="#61">61</a>  	}
+<a class="jxr_linenumber" name="62" href="#62">62</a>  
+<a class="jxr_linenumber" name="63" href="#63">63</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doAfterBytesWriten(byte[] bytesWritten)
+<a class="jxr_linenumber" name="64" href="#64">64</a>  	{
+<a class="jxr_linenumber" name="65" href="#65">65</a>  		<strong class="jxr_keyword">synchronized</strong> (threadToByteCountMap)
+<a class="jxr_linenumber" name="66" href="#66">66</a>  		{
+<a class="jxr_linenumber" name="67" href="#67">67</a>  			Long currentByteCount = threadToByteCountMap.get(Thread.currentThread());
+<a class="jxr_linenumber" name="68" href="#68">68</a>  			threadToByteCountMap.put(Thread.currentThread(), <strong class="jxr_keyword">new</strong> Long(currentByteCount + bytesWritten.length));
+<a class="jxr_linenumber" name="69" href="#69">69</a>  		}
+<a class="jxr_linenumber" name="70" href="#70">70</a>  	}
+<a class="jxr_linenumber" name="71" href="#71">71</a>  
+<a class="jxr_linenumber" name="72" href="#72">72</a>  }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+
