@@ -76,7 +76,7 @@
 						<redirectTestOutputToFile>true</redirectTestOutputToFile>
 						<!-- 
 							Pass the system property-defined SMTP password into the test execution context.
-							That system property should be defined externaly in a build profile within settings.xml.
+							That system property should be defined externally in a build profile within settings.xml.
 						-->
 						<systemProperties>
 							<property>
