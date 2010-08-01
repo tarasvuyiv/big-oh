@@ -10,7 +10,7 @@
 	<groupId>net.big_oh</groupId>
 	<artifactId>BigOhSoftwareCommon</artifactId>
 	<name>Common Framework</name>
-	<description>This module contains Java classes &amp; resources common across all BigOhSoftware modules.</description>
+	<description>This module contains Java classes &amp; resources common across all Big-Oh Software modules.</description>
 	
 	<dependencies>
 		<dependency>
