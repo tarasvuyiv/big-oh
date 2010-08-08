@@ -23,6 +23,7 @@
 	<modules>
 		<module>BigOhSoftwareCommon</module>
 		<module>BigOhSoftwareCommonWeb</module>
+		<module>BigOhSoftwareDataStructuresAndAlgorithms</module>
 		<module>BigOhSoftwareHibernate</module>
 		<module>BigOhSoftwareJDBCProxy</module>
 		<module>BigOhSoftwarePostOffice</module>
@@ -91,7 +92,7 @@
 				<version>2.4</version>
 			</dependency>
 			<dependency>
-				<!-- provides JSTL -->
+			<!-- provides JSTL -->
 				<groupId>taglibs</groupId>
 				<artifactId>standard</artifactId>
 				<version>1.1.2</version>
@@ -148,6 +149,12 @@
 				<groupId>hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
 				<version>1.8.0.1</version>
+			</dependency>
+			<!-- Misc. - - - - - - - - - - - - - - - - - - - - - - - -->
+			<dependency>
+				<groupId>jung</groupId>
+				<artifactId>jung</artifactId>
+				<version>1.7.6</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

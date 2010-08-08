@@ -9,6 +9,12 @@
     <author email="bigohsoftware@gmail.com">Dave W.</author>
   </properties>
   <body>
+  	<release version="2.4" date="2010-08-08" description="Removed Winnowing and A* Code">
+      <action dev="Dave W." type="remove">
+        Moved the net.big_oh.common.algorithms.winnowing and net.big_oh.common.algorithms.astar packages from this module to the new BigOhSoftwareDataStructuresAndAlgorithms module.
+      </action>
+    </release>
+  
   	<release version="2.3" date="2010-07-11" description="Moved Project Site">
       <action dev="Dave W." type="update">
         Updated so that maven-generated site is hosted in google code SVN repository.

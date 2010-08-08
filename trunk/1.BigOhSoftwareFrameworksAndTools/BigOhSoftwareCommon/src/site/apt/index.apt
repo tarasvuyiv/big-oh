@@ -10,36 +10,6 @@ Overview
 
 	Big-Oh Software's Common library of code provides classes and utility methods that are reused through out each of the 
 	frameworks that Big-Oh Software publishes. Moreover, the resources provided in the Common library are also just 
-	generally useful to software developers. Read on to find out more.
-
-Usage
+	generally useful to software developers. 
 	
-	While there's really no substitute for diving in and browsing the contents of the Big-Oh Software Common library, here are 
-	a few highlights that will hopefully encourage you to learn more.
-	
-	Need to convert a Collection into a comma-separated string?
-	
-+-----+	
-// Define a 'mixed' collection
-Collection<Object> collection = new LinkedList<Object>();
-collection.add("one");
-collection.add(new Double(2));
-collection.add(new Long(3));
-
-String csvString = net.big_oh.common.utils.CollectionsUtil.toCsvString(collection);
-
-// prints "one, 2.0, 3"
-System.out.println(csvString);
-+-----+
-
-	Want to create a document fingerprint for some text?
-	
-+-----+	
-WinnowingFingerprinter fingerprinter = new net.big_oh.common.algorithms.winnowing.WinnowingFingerprinter(25, 25);
-Set<BigInteger> documentFingerprints = fingerprinter.fingerprint("The quick, brown fox jumped over the lazy dog");
-+-----+	
-
-	The above examples are just a quick sample of the features offered by the Common library. Checkout the javadoc for 
-	additional details.
-
 ~~See also http://maven.apache.org/doxia/references/apt-format.html for a tutorial on the APT document format.
