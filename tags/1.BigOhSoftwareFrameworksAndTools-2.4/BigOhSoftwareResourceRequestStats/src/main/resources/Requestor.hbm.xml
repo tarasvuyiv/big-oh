@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.big_oh.resourcestats.domain">
+	<class name="Requestor" table="REQUESTOR" mutable="false">
+
+		<id name="requestorId" column="REQUESTOR_ID" type="string">
+			<generator class="assigned" />
+		</id>
+
+		<set name="resourceRequests" access="field" inverse="true" lazy="extra">
+			<key column="REQUESTOR_ID" />
+			<one-to-many class="ResourceRequest" />
+		</set>
+		
+		<query name="getMostFrequentRequestors">
+			<![CDATA[
+				select 
+				distinct 
+				r, count(rr) 
+				from 
+				Requestor r 
+				left outer join 
+				r.resourceRequests rr 
+				where 		
+				rr.requestedOn > :since 
+				group by 
+				r 
+				order by 
+				count(rr) desc 
+			]]>
+		</query>
+
+	</class>
+</hibernate-mapping>

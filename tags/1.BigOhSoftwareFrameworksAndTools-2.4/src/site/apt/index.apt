@@ -1,0 +1,42 @@
+ -----
+ Introduction
+ -----
+ Dave W.
+ -----
+ 2010-06-12
+ -----
+
+Overview
+
+	{{{http://www.big-oh.net/}Big-Oh Software}} publishes several open-source {{{http://big-oh.googlecode.com/svn/site/1.BigOhSoftwareFrameworksAndTools/index.html}Frameworks & Tools}} of interest and utility to software developers.
+	See the Module links to the left for a listing of the available resources.
+	
+Downloads
+
+	You can manually download jar, war or pom files by browsing the project's micro {{{http://code.google.com/p/big-oh/source/browse/#svn/repos/releases}repository}}.
+
+	Alternatively, if you're using Maven to manage your build process, it's easy to make this project's repository available to your pom.
+
++-----+
+<repositories>
+	<repository>
+		<id>net.big_oh</id>
+		<name>Big-Oh Software's Maven Repository</name>
+		<url>https://big-oh.googlecode.com/svn/repos/releases</url>
+	</repository>
+</repositories>
++-----+
+
+	Once you've added the repository above, you might (for example) include the {{{http://big-oh.googlecode.com/svn/site/1.BigOhSoftwareFrameworksAndTools/BigOhSoftwarePostOffice/index.html}PostOffice Framework}} by adding this content to your pom.xml file;
+
++-----+
+<dependency>
+	<groupId>net.big_oh</groupId>
+	<artifactId>BigOhSoftwarePostOffice</artifactId>
+	<version>2.2</version>
+	<type>jar</type>
+	<scope>compile</scope>
+</dependency>
++-----+
+
+~~See also http://maven.apache.org/doxia/references/apt-format.html for a tutorial on the APT document format.

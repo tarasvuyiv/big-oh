@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>1.BigOhSoftwareFrameworksAndTools</artifactId>
+		<groupId>net.big_oh</groupId>
+		<version>2.4</version>
+	</parent>
+	
+	<groupId>net.big_oh</groupId>
+	<artifactId>BigOhSoftwareDataStructuresAndAlgorithms</artifactId>
+	<name>Data Structures &amp; Algorithms Library</name>
+	<description>This module contains a library of reusable data structures and algorithms.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>jung</groupId>
+			<artifactId>jung</artifactId>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>BigOhSoftwareCommon</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>BigOhSoftwareDataStructuresAndAlgorithms</finalName>
+	</build>
+	
+</project>
