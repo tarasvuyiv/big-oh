@@ -14,10 +14,10 @@
 -docencoding
 'UTF-8'
 -doctitle
-'CommonWeb Framework 2.3 API'
+'CommonWeb Framework 2.4 API'
 -linkoffline
 'http://www.big-oh.net/BigOhSoftwareCommon/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommon/target/site/apidocs'
 -use
 -version
 -windowtitle
-'CommonWeb Framework 2.3 API'
+'CommonWeb Framework 2.4 API'
