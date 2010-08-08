@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><project>
+  <bannerRight>
+    <name>Big-Oh Software ... computer scientists find big-oh!!</name>
+  </bannerRight>
+  <publishDate position="right" />
+  <version position="left" />
+  <skin>
+    <groupId>net.big_oh</groupId>
+    <artifactId>BigOhSoftwareSiteSkin</artifactId>
+    <version>1.0</version>
+  </skin>
+  <body>
+    <menu name="Modules" inherit="bottom" ref="modules">
+      <item name="Common Framework" href="BigOhSoftwareCommon/index.html" />
+      <item name="CommonWeb Framework" href="BigOhSoftwareCommonWeb/index.html" />
+      <item name="Data Structures &amp; Algorithms Library" href="BigOhSoftwareDataStructuresAndAlgorithms/index.html" />
+      <item name="HibernateExtension Library" href="BigOhSoftwareHibernate/index.html" />
+      <item name="JDBCProxy Framework" href="BigOhSoftwareJDBCProxy/index.html" />
+      <item name="PostOffice Framework" href="BigOhSoftwarePostOffice/index.html" />
+      <item name="ResourceRequestStats Tool" href="BigOhSoftwareResourceRequestStats/index.html" />
+    </menu>
+    <menu inherit="bottom" ref="reports" />
+  </body>
+</project>
