@@ -1,0 +1,4 @@
+net.big_oh.datastructures.graph.jung.sparse
+net.big_oh.algorithms.graph.clique
+net.big_oh.algorithms.fingerprint.winnowing
+net.big_oh.algorithms.search.informed.astar
