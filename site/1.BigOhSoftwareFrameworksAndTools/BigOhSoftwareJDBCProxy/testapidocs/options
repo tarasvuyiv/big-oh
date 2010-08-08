@@ -14,7 +14,7 @@
 -docencoding
 'UTF-8'
 -doctitle
-'JDBCProxy Framework 2.3 Test API'
+'JDBCProxy Framework 2.4 Test API'
 -link
 '../apidocs'
 -linkoffline
@@ -22,8 +22,10 @@
 -linkoffline
 'http://www.big-oh.net/BigOhSoftwareCommonWeb/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommonWeb/target/site/testapidocs'
 -linkoffline
+'http://www.big-oh.net/BigOhSoftwareDataStructuresAndAlgorithms/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareDataStructuresAndAlgorithms/target/site/testapidocs'
+-linkoffline
 'http://www.big-oh.net/BigOhSoftwareHibernate/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareHibernate/target/site/testapidocs'
 -use
 -version
 -windowtitle
-'JDBCProxy Framework 2.3 Test API'
+'JDBCProxy Framework 2.4 Test API'
