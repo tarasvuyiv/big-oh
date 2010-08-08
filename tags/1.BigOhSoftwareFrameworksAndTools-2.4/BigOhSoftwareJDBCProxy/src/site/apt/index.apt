@@ -1,0 +1,50 @@
+ -----
+ Introduction
+ -----
+ Dave W.
+ -----
+ 2010-06-12
+ -----
+
+Overview
+
+	A JDBC Driver proxy can be utilized to unobtrusively observe the database events produced by a Java application. 
+	Observing those JDBC events makes it easy to add new types of persistence-related functionality. Here are just a 
+	few examples of the features that you might add to your application using a JDBC Driver proxy.
+	
+	* Log all SQL statements executed by the application.
+	
+	* Prevent the execution of malicious or ill-conceived SQL statements.
+	
+	* Track the least performant SQL statements run by the application.
+	
+	[]
+	
+	Note that each of the features described in the list above can be applied to an existing Java application without 
+	changing the application's code.  As a result, the JDBCProxy framework allows developers to add new features 
+	unobtrusively! Read on to the next section to see how.
+
+Usage
+
+	The JDBCProxy framework provides a single driver class, JdbcDriverProxy, that builds itself by reading a list of event
+	listeners from a file in the classpath named jdbcdriverproxy.properties. Here's an example:
+	
++-----+	
+#jdbcdriverproxy.properties
+JDBCEventListeners=net.big_oh.common.jdbc.event.listener.logger.JDBCCommonsLoggingListener,\
+net.big_oh.common.jdbc.event.listener.safety.JDBCSafetyListener	
++-----+
+
+	Note that although the example properties file listed above makes use of the predefined event listeners from the
+	net.big_oh.common.jdbc.listener package, you are also free to include your own custom JDBC event listeners.
+	Once you've configured your jdbcdriverproxy.properties file, making use of the Driver proxy is easy.
+
++-----+		
+Class.forName("net.big_oh.common.jdbc.JdbcDriverProxy");
+String url = JdbcDriverProxy.class.getSimpleName() + ":" + "jdbc:postgresql://localhost:5432/[your_schema]";
+Connection con = DriverManager.getConnection(url, "[your_username]", "[your_password]");	
++-----+	
+	
+	Using the syntax above will cause JDBC events to be delivered to all registered listeners defined in the properties file.
+	
+~~See also http://maven.apache.org/doxia/references/apt-format.html for a tutorial on the APT document format.

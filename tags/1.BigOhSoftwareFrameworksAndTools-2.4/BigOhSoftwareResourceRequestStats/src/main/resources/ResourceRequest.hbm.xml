@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="net.big_oh.resourcestats.domain">
+	<class name="ResourceRequest" table="RESOURCE_REQUEST">
+
+		<id name="id" column="RESOURCE_REQUEST_ID" type="long">
+			<generator class="native" />
+		</id>
+
+		<many-to-one foreign-key="FK_RESOURCE_REQUEST_TO_RESOURCE" name="requestedResource" column="RESOURCE_LOCATOR" class="Resource" not-null="true" />
+
+		<many-to-one foreign-key="FK_RESOURCE_REQUEST_TO_REQUESTOR" name="resourceRequestor" column="REQUESTOR_ID" class="Requestor" not-null="true" />
+
+		<property name="requestedOn" column="REQUESTED_ON" type="timestamp" not-null="true" />
+
+		<property name="requestedFromAddress" column="REQUESTED_FROM_ADDRESS" type="string" not-null="true" />
+
+		<property name="millisecondsToServiceRequest" column="MILLISECONDS_TO_SERVICE_REQUEST" type="long" not-null="true" />
+		
+		<query name="getAverageResourceRequestServiceTime">
+			<![CDATA[
+				select avg(millisecondsToServiceRequest) from ResourceRequest
+			]]>
+		</query>
+
+	</class>
+</hibernate-mapping>
