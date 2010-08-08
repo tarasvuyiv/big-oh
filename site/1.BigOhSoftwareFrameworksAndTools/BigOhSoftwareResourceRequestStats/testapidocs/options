@@ -14,13 +14,15 @@
 -docencoding
 'UTF-8'
 -doctitle
-'ResourceRequestStats Tool 2.3 Test API'
+'ResourceRequestStats Tool 2.4 Test API'
 -link
 '../apidocs'
 -linkoffline
 'http://www.big-oh.net/BigOhSoftwareCommon/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommon/target/site/testapidocs'
 -linkoffline
 'http://www.big-oh.net/BigOhSoftwareCommonWeb/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommonWeb/target/site/testapidocs'
+-linkoffline
+'http://www.big-oh.net/BigOhSoftwareDataStructuresAndAlgorithms/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareDataStructuresAndAlgorithms/target/site/testapidocs'
 -linkoffline
 'http://www.big-oh.net/BigOhSoftwareHibernate/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareHibernate/target/site/testapidocs'
 -linkoffline
@@ -30,4 +32,4 @@
 -use
 -version
 -windowtitle
-'ResourceRequestStats Tool 2.3 Test API'
+'ResourceRequestStats Tool 2.4 Test API'

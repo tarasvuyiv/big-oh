@@ -14,11 +14,13 @@
 -docencoding
 'UTF-8'
 -doctitle
-'ResourceRequestStats Tool 2.3 API'
+'ResourceRequestStats Tool 2.4 API'
 -linkoffline
 'http://www.big-oh.net/BigOhSoftwareCommon/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommon/target/site/apidocs'
 -linkoffline
 'http://www.big-oh.net/BigOhSoftwareCommonWeb/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareCommonWeb/target/site/apidocs'
+-linkoffline
+'http://www.big-oh.net/BigOhSoftwareDataStructuresAndAlgorithms/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareDataStructuresAndAlgorithms/target/site/apidocs'
 -linkoffline
 'http://www.big-oh.net/BigOhSoftwareHibernate/apidocs' '/home/dwingate/Workspaces/BigOhSoftware/1.BigOhSoftwareFrameworksAndTools/target/checkout/BigOhSoftwareHibernate/target/site/apidocs'
 -linkoffline
@@ -28,4 +30,4 @@
 -use
 -version
 -windowtitle
-'ResourceRequestStats Tool 2.3 API'
+'ResourceRequestStats Tool 2.4 API'
