@@ -48,7 +48,7 @@
   
     
             <div class="xleft">
-        Version: 2.3
+        Version: 2.4
               </div>
             <div class="xright">      
   
@@ -58,7 +58,7 @@
             
   
     
-             Last Published: 2010-07-11
+             Last Published: 2010-08-08
             </div>
       <div class="clear">
         <hr/>
@@ -149,27 +149,7 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section"><h2>Overview</h2>
-<p>Big-Oh Software's Common library of code provides classes and utility methods that are reused through out each of the frameworks that Big-Oh Software publishes. Moreover, the resources provided in the Common library are also just generally useful to software developers. Read on to find out more.</p>
-</div>
-<div class="section"><h2>Usage</h2>
-<p>While there's really no substitute for diving in and browsing the contents of the Big-Oh Software Common library, here are a few highlights that will hopefully encourage you to learn more.</p>
-<p>Need to convert a Collection into a comma-separated string?</p>
-<div class="source"><pre>// Define a 'mixed' collection
-Collection&lt;Object&gt; collection = new LinkedList&lt;Object&gt;();
-collection.add(&quot;one&quot;);
-collection.add(new Double(2));
-collection.add(new Long(3));
-
-String csvString = net.big_oh.common.utils.CollectionsUtil.toCsvString(collection);
-
-// prints &quot;one, 2.0, 3&quot;
-System.out.println(csvString);</pre>
-</div>
-<p>Want to create a document fingerprint for some text?</p>
-<div class="source"><pre>WinnowingFingerprinter fingerprinter = new net.big_oh.common.algorithms.winnowing.WinnowingFingerprinter(25, 25);
-Set&lt;BigInteger&gt; documentFingerprints = fingerprinter.fingerprint(&quot;The quick, brown fox jumped over the lazy dog&quot;);</pre>
-</div>
-<p>The above examples are just a quick sample of the features offered by the Common library. Checkout the javadoc for additional details.</p>
+<p>Big-Oh Software's Common library of code provides classes and utility methods that are reused through out each of the frameworks that Big-Oh Software publishes. Moreover, the resources provided in the Common library are also just generally useful to software developers. </p>
 </div>
 
       </div>

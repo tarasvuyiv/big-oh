@@ -1,5 +1,3 @@
 net.big_oh.common.testing.functional
 net.big_oh.common.utils
 net.big_oh.common.flatfile
-net.big_oh.common.algorithms.astar
-net.big_oh.common.algorithms.winnowing
