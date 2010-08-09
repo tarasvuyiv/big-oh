@@ -133,7 +133,7 @@ public class BronKerboschMaximalCliqueFinder<V extends Vertex> implements Maxima
 			}
 
 			// log current progress of the operation?
-			if (completedVertexCounter % (numVertices / 100) == 0)
+			if (completedVertexCounter % Math.max(1, (numVertices / 100)) == 0)
 			{
 				logger.info("Executing " + this.getClass().getSimpleName() + ".findMaximalCliques(..) ... " + (int) ((double) completedVertexCounter / (double) numVertices * 100.0) + "% complete.");
 			}
