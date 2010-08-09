@@ -18,7 +18,7 @@
 	<packaging>pom</packaging>
 	<name>Framework and Tool Artifacts</name>
 	<description>This is the top-level container for Big-Oh Software's frameworks and tools.</description>
-	<url>http://www.big-oh.net/</url>
+	<url>http://big-oh.googlecode.com/svn/site/1.BigOhSoftwareFrameworksAndTools</url>
 
 	<modules>
 		<module>BigOhSoftwareCommon</module>
