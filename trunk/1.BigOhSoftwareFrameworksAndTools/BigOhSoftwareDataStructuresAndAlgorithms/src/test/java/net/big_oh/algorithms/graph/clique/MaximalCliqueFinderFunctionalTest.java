@@ -5,12 +5,20 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import net.big_oh.datastructures.graph.jung.sparse.JungUndirectedGraph;
 import net.big_oh.datastructures.graph.jung.sparse.JungVertex;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Transformer;
+import org.apache.commons.lang.ArrayUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,9 +59,10 @@ import org.junit.Test;
  * @author dwingate
  * @version Aug 8, 2010
  */
-// TODO DSW finish writing tests
 public abstract class MaximalCliqueFinderFunctionalTest
 {
+
+	private static final int DEFAULT_NOISE_VALUE = 200;
 
 	private MaximalCliqueFinder<JungVertex> cliqueFinder;
 
@@ -120,7 +129,7 @@ public abstract class MaximalCliqueFinderFunctionalTest
 	private void testFindMaximalCliques_CompleteGraph(int completeGraphSize)
 	{
 		final CliqueTestGraphBuilder completeGraphBuilder = new CliqueTestGraphBuilder();
-		completeGraphBuilder.setNumCliques(1).setCliqueSize(completeGraphSize);
+		completeGraphBuilder.addClique(completeGraphSize);
 
 		final JungUndirectedGraph completeGraph = completeGraphBuilder.build();
 
@@ -144,33 +153,198 @@ public abstract class MaximalCliqueFinderFunctionalTest
 		assertTrue("Found a spurious clique.", maximalCliques.isEmpty());
 	}
 
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_3_3()
+	{
+		testFindMaximalCliques_MultipleCliques(3, 3);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_3_3_WithNoise()
+	{
+		testFindMaximalCliques_MultipleCliques_WithNoise(DEFAULT_NOISE_VALUE, 3, 3);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_3_3_3()
+	{
+		testFindMaximalCliques_MultipleCliques(3, 3, 3);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_3_3_3_WithNoise()
+	{
+		testFindMaximalCliques_MultipleCliques_WithNoise(DEFAULT_NOISE_VALUE, 3, 3, 3);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_7_4_9_3()
+	{
+		testFindMaximalCliques_MultipleCliques(7, 4, 9, 3);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_7_4_9_3_WithNoise()
+	{
+		testFindMaximalCliques_MultipleCliques_WithNoise(DEFAULT_NOISE_VALUE, 7, 4, 9, 3);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_3_4_5_6_7_8_9_10()
+	{
+		testFindMaximalCliques_MultipleCliques(3, 4, 5, 6, 7, 8, 9, 10);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_3_4_5_6_7_8_9_10_WithNoise()
+	{
+		testFindMaximalCliques_MultipleCliques_WithNoise(DEFAULT_NOISE_VALUE, 3, 4, 5, 6, 7, 8, 9, 10);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_10_10_10_10_10()
+	{
+		testFindMaximalCliques_MultipleCliques(10, 10, 10, 10, 10);
+	}
+
+	@Test
+	public void testFindMaximalCliques_MultipleCliques_10_10_10_10_10_WithNoise()
+	{
+		testFindMaximalCliques_MultipleCliques_WithNoise(DEFAULT_NOISE_VALUE, 10, 10, 10, 10, 10);
+	}
+
+	private void testFindMaximalCliques_MultipleCliques(int... cliqueSizes)
+	{
+		testFindMaximalCliques_MultipleCliques_WithNoise(0, cliqueSizes);
+	}
+
+	private void testFindMaximalCliques_MultipleCliques_WithNoise(int numNonCliqueNodes, int... cliqueSizes)
+	{
+		if (numNonCliqueNodes < 0)
+		{
+			throw new IllegalArgumentException("numNonCliqueNodes cannot be less than zero.");
+		}
+
+		if (cliqueSizes.length <= 0)
+		{
+			throw new IllegalArgumentException("must provide one or more cliqueSize arguments.");
+		}
+
+		final CliqueTestGraphBuilder graphBuilder = new CliqueTestGraphBuilder();
+		for (int cliqueSize : cliqueSizes)
+		{
+			graphBuilder.addClique(cliqueSize);
+		}
+		graphBuilder.setNumNonCliqueNodes(numNonCliqueNodes);
+
+		final JungUndirectedGraph multiCliqueGraph = graphBuilder.build();
+
+		// find cliques of size 3 or greater; can't use size 2 because of noise
+		// nodes that are connected to one node in each clique
+		Set<Set<JungVertex>> maximalCliques = cliqueFinder.findMaximalCliques(multiCliqueGraph, 3);
+
+		assertNotNull(maximalCliques);
+		assertEquals("Failed to find expected number of maximal cliques.", cliqueSizes.length, maximalCliques.size());
+
+		// extract the _sizes_ of all discovered maximal cliques
+		@SuppressWarnings("unchecked")
+		Collection<Integer> maximalCliqueSizes = CollectionUtils.collect(maximalCliques, new Transformer()
+		{
+			public Object transform(Object input)
+			{
+				Set<JungVertex> clique = (Set<JungVertex>) input;
+				return Integer.valueOf(clique.size());
+			}
+		});
+
+		// the collection of input clique sizes should be equal to the
+		// collection of discovered clique sizes
+		assertTrue(CollectionUtils.isEqualCollection(Arrays.asList(ArrayUtils.toObject(cliqueSizes)), maximalCliqueSizes));
+	}
+
+	@Test
+	public void testFindMaximalCliques_NoSuchClique_3()
+	{
+		testFindMaximalCliques_NoSuchClique(3);
+	}
+
+	@Test
+	public void testFindMaximalCliques_NoSuchClique_4()
+	{
+		testFindMaximalCliques_NoSuchClique(4);
+	}
+
+	@Test
+	public void testFindMaximalCliques_NoSuchClique_7()
+	{
+		testFindMaximalCliques_NoSuchClique(7);
+	}
+
+	@Test
+	public void testFindMaximalCliques_NoSuchClique_11()
+	{
+		testFindMaximalCliques_NoSuchClique(11);
+	}
+
+	private void testFindMaximalCliques_NoSuchClique(int minCliqueSize)
+	{
+		if (minCliqueSize < 3)
+		{
+			throw new IllegalArgumentException("minCliqueSize must be greater than two.");
+		}
+
+		// create a complete graph of size (minCliqueSize - 1)
+		JungUndirectedGraph graph = new CliqueTestGraphBuilder().addClique(minCliqueSize - 1).build();
+
+		// add a node to the graph and connect to all but one of the other nodes
+		// in the graph
+		final JungVertex extraNode = new JungVertex();
+		graph.addVertex(extraNode);
+
+		Iterator<JungVertex> nodeIterator = graph.getAllVerticesIterator();
+
+		// skip one node from the original, complete graph
+		JungVertex skippedNode = nodeIterator.next();
+		if (skippedNode == extraNode)
+		{
+			skippedNode = nodeIterator.next();
+		}
+		assert (skippedNode != extraNode);
+
+		// connect extra node to all other nodes from the original, complete
+		// graph
+		while (nodeIterator.hasNext())
+		{
+			graph.addEdge(extraNode, nodeIterator.next());
+		}
+
+		// confirm that there is no clique of size minCliqueSize
+		Set<Set<JungVertex>> maximalCliques = cliqueFinder.findMaximalCliques(graph, minCliqueSize);
+		assertTrue("Unexpectedly found one or more cliques of size " + minCliqueSize + " or greater.", maximalCliques.isEmpty());
+
+	}
+
 	private static final class CliqueTestGraphBuilder
 	{
 
-		private int numCliques = 0;
-		private int cliqueSize = 2;
+		private int numNonCliqueNodes = 0;
+		private List<Integer> cliquesToBuild = new ArrayList<Integer>();
 
-		public CliqueTestGraphBuilder setNumCliques(int numCliques)
+		public CliqueTestGraphBuilder addClique(int cliqueSize) throws IllegalArgumentException
 		{
-			if (numCliques < 0)
+			if (cliqueSize < 2)
 			{
-				throw new IllegalArgumentException("numCliques cannot be less than zero.");
+				throw new IllegalArgumentException("Clique size must be greater than or equal to two.");
 			}
 
-			this.numCliques = numCliques;
+			cliquesToBuild.add(Integer.valueOf(cliqueSize));
 
 			return this;
 		}
 
-		public CliqueTestGraphBuilder setCliqueSize(int cliqueSize)
+		public CliqueTestGraphBuilder setNumNonCliqueNodes(int numNonCliqueNodes)
 		{
-			if (cliqueSize < 2)
-			{
-				throw new IllegalArgumentException("cliqueSize cannot be less than two");
-			}
-
-			this.cliqueSize = cliqueSize;
-
+			this.numNonCliqueNodes = numNonCliqueNodes;
 			return this;
 		}
 
@@ -181,13 +355,13 @@ public abstract class MaximalCliqueFinderFunctionalTest
 
 			// populate cliques into the graph
 			final Set<Set<JungVertex>> cliques = new HashSet<Set<JungVertex>>();
-			for (int cliqueCounter = 0; cliqueCounter < numCliques; cliqueCounter++)
+			for (final Integer cliqueToBuild : cliquesToBuild)
 			{
 				// create a new clique in the graph
 				final Set<JungVertex> clique = new HashSet<JungVertex>();
 				cliques.add(clique);
 
-				for (int i = 0; i < cliqueSize; i++)
+				for (int i = 0; i < cliqueToBuild.intValue(); i++)
 				{
 
 					// add member to clique
@@ -203,6 +377,21 @@ public abstract class MaximalCliqueFinderFunctionalTest
 
 				}
 
+			}
+
+			// add non-clique nodes
+			for (int i = 0; i < numNonCliqueNodes; i++)
+			{
+
+				// add node to graph
+				final JungVertex nonCliqueMember = new JungVertex();
+				graph.addVertex(nonCliqueMember);
+
+				// connect to one node in each clique
+				for (Set<JungVertex> clique : cliques)
+				{
+					graph.addEdge(nonCliqueMember, clique.iterator().next());
+				}
 			}
 
 			return graph;
